@@ -1,5 +1,9 @@
 package com.nlw.events.repo;
 
-public interface UserRepo {
+import org.springframework.data.repository.CrudRepository;
 
+import com.nlw.events.model.User;
+
+public interface UserRepo extends CrudRepository<User, Integer> {
+    public User findByEmail(String email);
 }

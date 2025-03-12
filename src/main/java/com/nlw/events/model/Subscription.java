@@ -26,6 +26,8 @@ public class Subscription {
 	@JoinColumn(name = "subscribed_user_id")
 	private User subscriber;
 	
+	@ManyToOne
+	@JoinColumn(name = "indication_user_id", nullable = true)
 	private User indication;
 
 	public Integer getSubscriptionNumber() {
