@@ -3,6 +3,7 @@ package com.nlw.events.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nlw.events.exception.EventNotFoundException;
 import com.nlw.events.model.Event;
 import com.nlw.events.model.Subscription;
 import com.nlw.events.model.User;
@@ -26,6 +27,9 @@ public class SubscriptionService {
 		
 		// return event by name
 		Event evt = evtRepo.findByPrettyName(eventName);
+		if (evt == null) {
+			throw new EventNotFoundException("Evento " + eventName + " nao existe");
+		}
 		User userRec = userRepo.findByEmail(user.getEmail());
 		if (userRec == null) {
 			userRec = userRepo.save(user);
